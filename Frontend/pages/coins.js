@@ -1,9 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchData } from './api/fetchCoins';
-import * as React from 'react';
+import styled from 'styled-components';
 import { DataGrid } from '@mui/x-data-grid';
 import { useRouter } from 'next/router';
-import { Box } from '@mui/material';
 
 const columns = [
   { field: 'name', headerName: 'Name', width: 250 },
@@ -13,6 +12,32 @@ const columns = [
   { field: 'lowestPrice', headerName: 'Lowest Price (24h)', width: 250 },
   { field: 'priceChange', headerName: 'Price Change (24h)', width: 250 },
 ];
+
+const FullScreenContainer = styled.div`
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+const CenteredContainer = styled.div`
+  width: 80%;
+`;
+const TableWrapper = styled.div`
+  height: ${({ tableHeight }) => tableHeight}px;
+  width: 100%;
+
+  .MuiDataGrid-root {
+    background-color: transparent; /* Replace with your desired background color */
+  }
+`;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+`;
 
 const Coins = () => {
   const [coins, setCoins] = useState([]);
@@ -59,14 +84,9 @@ const Coins = () => {
   };
 
   return (
-    <Box
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      height="calc(100vh - 64px)" // Adjust the height as needed
-      width="100%"
-    >
-      <div style={{ height: tableHeight, width: '100%' }}>
+    <FullScreenContainer>
+      <CenteredContainer>
+      <TableWrapper tableHeight={tableHeight}>
         {coins.length > 0 ? (
           <DataGrid
             rows={coins}
@@ -82,10 +102,11 @@ const Coins = () => {
             onRowClick={handleRowClick}
           />
         ) : (
-          <div>Loading...</div>
+          <LoadingContainer>Loading...</LoadingContainer>
         )}
-      </div>
-    </Box>
+      </TableWrapper>
+      </CenteredContainer>
+    </FullScreenContainer>
   );
 };
 

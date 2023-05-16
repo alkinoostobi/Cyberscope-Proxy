@@ -38,9 +38,7 @@ export default function CoinPage({ coin }) {
         </Box>
 
         <p>Description: <span dangerouslySetInnerHTML={getDescriptionHtml()} /></p>
-        <button className={styles.button} onClick={() => router.push("/coins")}>
-          Click me to programmatically navigate or redirect
-        </button>
+        
       </Box>
     </Box>
   );
