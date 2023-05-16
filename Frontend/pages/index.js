@@ -1,24 +1,41 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import ProTip from '../src/ProTip';
-import Link from '../src/Link';
-import Copyright from '../src/Copyright';
+import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
-export default function Index() {
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const PrettyButton = styled.button`
+  display: block;
+  margin: 0 auto;
+  background-color: #ff4081;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ff80ab;
+  }
+`;
+
+const MyComponent = () => {
+  const router = useRouter();
+
+  const handleClick = () => {
+    router.push('/coins');
+  };
+
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI - Next.js example
-        </Typography>
-        <Link href="/about" color="secondary">
-          Go to the about page
-        </Link>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+    <div>
+      <Title>Cyberscope Assignment</Title>
+      <PrettyButton onClick={handleClick}>Go to Coins</PrettyButton>
+    </div>
   );
-}
+};
+
+export default MyComponent;

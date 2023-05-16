@@ -1,25 +1,32 @@
 import * as React from 'react';
-import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import ProTip from '../src/ProTip';
-import Link from '../src/Link';
-import Copyright from '../src/Copyright';
+import styled from 'styled-components';
 
-export default function About() {
+const Title = styled.h1`
+  text-align: center;
+`;
+
+const PrettyButton = styled.button`
+  background-color: #ff4081;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: #ff80ab;
+  }
+`;
+
+const MyComponent = () => {
   return (
-    <Container maxWidth="sm">
-      <Box sx={{ my: 4 }}>
-        <Typography variant="h4" component="h1" gutterBottom>
-          Material UI - Next.js example
-        </Typography>
-        <Button variant="contained" component={Link} noLinkStyle href="/">
-          Go to the main page
-        </Button>
-        <ProTip />
-        <Copyright />
-      </Box>
-    </Container>
+    <div>
+      <Title>Cyberscope Assignment</Title>
+      <PrettyButton>Click me</PrettyButton>
+    </div>
   );
-}
+};
+
+export default MyComponent;
